@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Device extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -16,6 +17,12 @@ class Device extends Model
         'date_taken',
         'date_delivery',
         'comment',
-        'user_full_name'
+        'user_id'
+        // 'user_full_name'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

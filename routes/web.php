@@ -19,3 +19,9 @@ Route::get('/', function () {
 });
 
 Route::resource('devices', DeviceController::class);
+
+Route::controller(DeviceController::class)->group(function(){
+    Route::delete('devices/force/{device}', 'forceDestroy')->name('devices.force.destroy');
+    Route::put('devices/restore/{device}')->name('devices.restore');
+    Route::get('user/{pseudo}/device', 'index')->name('devices.user');
+});

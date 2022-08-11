@@ -3,6 +3,14 @@
 @section('contenu')
     <form action="{{route('devices.store')}}" method="POST">
         @csrf
+        <label for="">Affecter à</label>
+        <select name="user_id">
+            @foreach($users as $user)
+                <option value="{{ $user->id }}">
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
         <div class="mb-3 form-floating">
             <input type="text" name="name" id="name" class="form-control  @error('title') is-danger @enderror" placeholder="Réf.Device" value="{{old('name')}}" required >
             <label for="name">Réf.Device</label>
@@ -17,13 +25,13 @@
                 <p class="bg-danger">{{ $message }}</p>
             @enderror
         </div>
-        <div class="mb-3 form-floating">
+        <!-- <div class="mb-3 form-floating">
             <input type="text" name="user_full_name" id="user_full_name" class="form-control  @error('user_full_name') is-danger @enderror" placeholder="utilisateur" value="{{old('user_full_name')}}" required >
             <label for="name">utilisateur</label>
             @error('user_full_name')
                 <p class="bg-danger">{{ $message }}</p>
             @enderror
-        </div>
+        </div> -->
         <div class="mb-3 form-floating">
             <input type="date" name="date_taken" id="date_taken" class="form-control  @error('date_taken') is-danger @enderror" placeholder="Date de prise" value="{{old('date_taken')}}" required >
             <label for="name">Date de prise</label>

@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DeviceRequest;
+use App\Models\User;
 use App\Models\Device;
 use Illuminate\Http\Request;
+use App\Http\Requests\DeviceRequest;
 
 class DeviceController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pseudo = null)
     {
-        $devices = Device::paginate(5);
+        $query = $pseudo ? User::wherePseudo($pseudo)->firstOrFail()->devices() : Device::query();
+        $devices = $query->withTrashed()->oldest('name')->paginate(5);
+        $users = User::all();
+        // $devices = Device::paginate(5);
         
-        return view('devices.index', compact('devices'));
+        return view('devices.index', compact('devices', 'users', 'pseudo'));
     }
 
     /**
@@ -27,7 +31,8 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        return view('devices.create');
+        $users = User::all();
+        return view('devices.create', compact('users'));
     }
 
     /**
@@ -51,7 +56,8 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
-        return view('Devices.show', compact('device'));
+        $user = $device->user->name;
+        return view('Devices.show', compact('device', 'user'));
     }
 
     /**
@@ -62,7 +68,8 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
-        return view('devices.edit', compact('device'));
+        $users = User::all();
+        return view('devices.edit', compact('device', 'users'));
     }
 
     /**
@@ -89,6 +96,20 @@ class DeviceController extends Controller
     {
         $device->delete();
 
-        return back()->with('info','Cette device a bien été supprimer');
+        return back()->with('info', 'Cette device a bien été mis dans la corbeille');
+    }
+
+    public function forceDestroy($id)
+    {
+        Device::withTrashed()->whereId($id)->firstOrFail()->restore();
+
+        return back()->with('info', 'Device a bien été supprimer devinitivement de la base de données');
+    }
+
+    public function restore($id)
+    {
+        Device::withTrashed()->whereId($id)->firstOrFail()->restore();
+
+        return back()->with('info', 'Cette device a bien été restauré');
     }
 }

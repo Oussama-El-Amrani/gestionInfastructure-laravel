@@ -30,7 +30,7 @@ class DeviceRequest extends FormRequest
             'date_taken' => 'required',
             'date_delivery' => 'required',
             'comment' => 'required|string|max:160000',
-            'user_full_name' => 'required|string|max:200'
+            // 'user_full_name' => 'required|string|max:200'
         ];
     }
 }

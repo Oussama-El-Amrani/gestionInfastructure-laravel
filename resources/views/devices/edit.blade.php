@@ -9,6 +9,14 @@
     <form action="{{route('devices.update',$device->id)}}" method="POST">
         @csrf
         @method('PUT')
+        <label for="">Affecter à</label>
+        <select name="user_id">
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{$user->id == $device->user_id ? 'selected' : ''}} >
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
         <div class="mb-3 form-floating">
             <input type="text" name="name" id="name" class="form-control  @error('title') is-danger @enderror" placeholder="Réf.Device" value="{{ old('name',$device->name) }}" required >
             <label for="name">Réf.Device</label>

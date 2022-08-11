@@ -14,6 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -22,8 +23,13 @@ return new class extends Migration
             $table->date('date_taken');
             $table->date('date_delivery');
             $table->text('comment');
-            $table->string('user_full_name');
+            // $table->string('user_full_name');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('user_id')
+                  ->contrained()
+                  ->onUpdate('restrict')
+                  ->onDelete('restrict');
         });
     }
 

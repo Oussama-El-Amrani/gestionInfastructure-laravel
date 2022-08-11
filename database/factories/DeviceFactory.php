@@ -25,7 +25,7 @@ class DeviceFactory extends Factory
             'date_taken' => fake()->date(),
             'date_delivery' => fake()->date(),
             'comment' => fake()->text(),
-            'user_full_name' => fake()->name()
+            // 'user_full_name' => fake()->name()
         ];
     }
 }
