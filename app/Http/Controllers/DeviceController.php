@@ -14,14 +14,9 @@ class DeviceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($pseudo = null)
+    public function index()
     {
-        $query = $pseudo ? User::wherePseudo($pseudo)->firstOrFail()->devices() : Device::query();
-        $devices = $query->withTrashed()->oldest('name')->paginate(5);
-        $users = User::all();
-        // $devices = Device::paginate(5);
-        
-        return view('devices.index', compact('devices', 'users', 'pseudo'));
+        return view('devices.index');
     }
 
     /**
@@ -101,9 +96,9 @@ class DeviceController extends Controller
 
     public function forceDestroy($id)
     {
-        Device::withTrashed()->whereId($id)->firstOrFail()->restore();
+        Device::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
-        return back()->with('info', 'Device a bien été supprimer devinitivement de la base de données');
+        return back()->with('info', 'Device a bien été supprimer définitivement de la base de données');
     }
 
     public function restore($id)

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('pseudo')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('state');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CardRequest;
+use App\Models\Card;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -11,9 +14,13 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pseudo = null)
     {
-        //
+        $query = $pseudo ? User::wherePseudo($pseudo)->firstOrFail()->cards() : Card::query();
+        $cards = $query->withTrashed()->paginate(7);
+        $users = User::all();
+
+        return view('cards.index', compact('cards', 'users', 'pseudo'));
     }
 
     /**
@@ -23,7 +30,8 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('cards.create', compact('users'));
     }
 
     /**
@@ -32,9 +40,11 @@ class CardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CardRequest $cardRequest)
     {
-        //
+        Card::create($cardRequest->all());
+
+        return redirect()->route('cards.index')->with('info', 'La nouvelle cartes a bien été ajouter');
     }
 
     /**
@@ -43,9 +53,11 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Card $card)
     {
-        //
+        $user_name = $card->user->name;
+        $user_profile = $card->user->state;
+        return view('Cards.show', compact('card', 'user_name','user_profile'));
     }
 
     /**
@@ -54,9 +66,11 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Card $card)
     {
-        //
+        $users = User::all();
+
+        return view('cards.edit', compact('card', 'users'));
     }
 
     /**
@@ -66,9 +80,11 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CardRequest $cardRequest, Card $card)
     {
-        //
+        $card->update($cardRequest->all());
+
+        return redirect()->route('cards.index')->with('info','Votre card a bien été mis à jour');
     }
 
     /**
@@ -77,8 +93,24 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Card $card)
     {
-        //
+        $card->delete();
+        
+        return back()->with('info', 'Votre Card a bien été mis dans la corbeille');
+    }
+
+    public function forceDestroy($id)
+    {
+        Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
+
+        return back()->with('info', 'Device a bien été supprimer');
+    }
+
+    public function restore($id)
+    {
+        Card::withTrashed()->whereId($id)->firstOrFail()->restore($id);
+
+        return back()->with('info', 'Cette device a bien été restauré');
     }
 }

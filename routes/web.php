@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::resource('devices', DeviceController::class);
 
 Route::controller(DeviceController::class)->group(function(){
+    Route::get('/','index');
     Route::delete('devices/force/{device}', 'forceDestroy')->name('devices.force.destroy');
-    Route::put('devices/restore/{device}')->name('devices.restore');
-    Route::get('user/{pseudo}/device', 'index')->name('devices.user');
+    Route::put('devices/restore/{device}','restore')->name('devices.restore');
+});
+
+Route::resource('cards', CardController::class);
+Route::controller(CardController::class)->group(function(){
+    Route::delete('cards/force/{card}', 'forceDestroy')->name('cards.force.destroy');
+    Route::put('cards/restore/{card}', 'restore')->name('cards.restore');
+    Route::get('user/{pseudo}/card', 'index')->name('cards.user');
 });
