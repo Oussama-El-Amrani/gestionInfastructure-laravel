@@ -1,18 +1,14 @@
-@extends('layouts.app')
-
-@section('contenu')
-    <select onchange="window.location.href = this.value">
-        <option value="{{ route('cards.index') }}" @unless($pseudo) selected @endunless>
+<div>
+<select>
+        <option value="" @unless($pseudo) selected @endunless>
             Toutes les utilisateur
         </option>
         @foreach($users as $user)
-            <option value=" {{ route('cards.user', $user->pseudo) }}" {{ $pseudo == $user->pseudo ? 'selected' : '' }}>
+            <option wire:model="search" value=" {{ $user->pseudo }}" {{ $pseudo == $user->pseudo ? 'selected' : '' }} >
                 {{ $user->name }}
             </option>
         @endforeach
     </select>
-
-    
     <a href=" {{route('cards.create')}} ">Ajouter une carte</a>
     <table>
         <thead>
@@ -66,4 +62,4 @@
         </tbody>
     </table>
     {{$cards->links()}}
-@endsection
+</div>

@@ -26,28 +26,28 @@
             @enderror
         </div>
         <div class="mb-3 form-floating">
-            <input type="text" name="machine_name" id="machine_name" class="form-control  @error('machine_name') is-danger @enderror" placeholder="Nom du machine" value="{{old('machine_name')}}" required >
+            <input type="text" name="machine_name" id="machine_name" class="form-control  @error('machine_name') is-danger @enderror" placeholder="Nom du machine" value="{{ old('machine_name')}}" required >
             <label for="machine_name">Nom  du Machine</label>
             @error('machine_name')
                 <p class="bg-danger">{{ $message }}</p>
             @enderror
         </div>
         <div class="mb-3 form-floating">
-            <input type="text" name="password" id="password" class="form-control  @error('password') is-danger @enderror" placeholder="Mot de passe" value="{{old('password')}}" required >
+            <input type="text" name="password" id="password" class="form-control  @error('password') is-danger @enderror" placeholder="Mot de passe" value="{{ old('password')} }" required >
             <label for="password">Mot de passe</label>
             @error('password')
                 <p class="bg-danger">{{ $message }}</p>
             @enderror
         </div>
         <div class="mb-3 form-floating">
-            <input type="date" name="last_access_date" id="last_access_date" class="form-control  @error('last_access_date') is-danger @enderror" placeholder=" date dernier accès" value="{{old('last_access_date')}}" required >
+            <input type="date" name="last_access_date" id="last_access_date" class="form-control  @error('last_access_date') is-danger @enderror" placeholder=" date dernier accès" value="{{ old('last_access_date') }}" required >
             <label for="last_access_date">date dernier accès</label>
             @error('last_access_date')
                 <p class="bg-danger">{{ $message }}</p>
             @enderror
         </div>
         <div class="mb-3 form-floating">
-            <input type="date" name="update_date" id="update_date" class="form-control  @error('update_date') is-danger @enderror" placeholder="Date de MAJ" value="{{old('update_date')}}" required >
+            <input type="date" name="update_date" id="update_date" class="form-control  @error('update_date') is-danger @enderror" placeholder="Date de MAJ" value="{{ old('update_date') }}" required >
             <label for="update_date">Date de MAJ</label>
             @error('update_date')
                 <p class="bg-danger">{{ $message }}</p>
