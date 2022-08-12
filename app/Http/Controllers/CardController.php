@@ -14,13 +14,9 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($pseudo = null)
+    public function index()
     {
-        $query = $pseudo ? User::wherePseudo($pseudo)->firstOrFail()->cards() : Card::query();
-        $cards = $query->withTrashed()->paginate(7);
-        $users = User::all();
-
-        return view('cards.index', compact('cards', 'users', 'pseudo'));
+        return view('cards.index');
     }
 
     /**

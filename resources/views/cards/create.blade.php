@@ -33,7 +33,7 @@
             @enderror
         </div>
         <div class="mb-3 form-floating">
-            <input type="text" name="password" id="password" class="form-control  @error('password') is-danger @enderror" placeholder="Mot de passe" value="{{ old('password')} }" required >
+            <input type="text" name="password" id="password" class="form-control  @error('password') is-danger @enderror" placeholder="Mot de passe" value="{{ old('password') }}" required >
             <label for="password">Mot de passe</label>
             @error('password')
                 <p class="bg-danger">{{ $message }}</p>

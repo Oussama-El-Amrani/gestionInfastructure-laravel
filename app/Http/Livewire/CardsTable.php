@@ -3,17 +3,42 @@
 namespace App\Http\Livewire;
 
 use App\Models\Card;
-use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CardsTable extends Component
 {
-    public function render($pseudo = null)
-    {
-        $query = $pseudo ? User::wherePseudo($pseudo)->firstOrFail()->cards() : Card::query();
-        $cards = $query->withTrashed()->paginate(7);
-        $users = User::all();
+    use WithPagination;
 
-        return view('livewire.cards-table', compact('cards', 'users', 'pseudo'));
+    public string $search = '';
+    public int $editId = 0;
+    protected $listeners = [
+        'userUpdated' => 'onUserUpdated'
+    ];
+
+    public function startEdit(int $id)
+    {
+        $this->editId = $id;
+    }
+
+    public function onUserUpdated()
+    {
+        session()->flash('success',"Votre changement à bien été mis à jour");
+
+        $this->reset('editId');
+    }
+
+    public function updating($name)
+    {
+        if ($name === 'search') {
+            $this->resetPage();
+        }
+    }
+
+    public function render()
+    {
+        $cards = Card::where('machine_name', 'LIKE',"%{$this->search}%")->withTrashed()->paginate(7);
+
+        return view('livewire.cards-table', compact('cards'));
     }
 }

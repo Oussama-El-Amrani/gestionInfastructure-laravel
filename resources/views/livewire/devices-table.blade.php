@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ $device->name }}</td>
                     <td>{{ $device->user->name }}</td>
-                    <td class="btn" wire:click="startEdit({{ $device->id }})">{{ $device->state ? 'Ok': 'Not ok' }}</td>
+                    <td class="btn" wire:click="startEdit( {{ $device->id }} )">{{ $device->state ? 'Ok': 'Not ok' }}</td>
                     <td>
                         @if($device->deleted_at)
                             <form action="{{ route('devices.restore', $device->id) }}" method="POST">

@@ -19,7 +19,7 @@ class DeviceState extends Component
         $this->validate();
         $this->device->save();
         $this->emit('deviceUpdated');
-    }
+        }
 
     public function render()
     {

@@ -12,7 +12,6 @@ class DevicesTable extends Component
 
     public string $search = '';
     public int $editId = 0;
-    public array $selection = [];
     protected $listeners =  [
         'deviceUpdated' => 'onDeviceUpdated'
     ];
