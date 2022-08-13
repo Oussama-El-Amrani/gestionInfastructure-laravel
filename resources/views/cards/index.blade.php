@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
-@section('contenu')
+<x-app-layout>
     <livewire:cards-table />
-@endsection
+</x-app-layout>

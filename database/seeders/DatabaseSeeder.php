@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         User::factory()
             ->has(Device::factory()->count(4))
             ->has(Card::factory()->count(4))

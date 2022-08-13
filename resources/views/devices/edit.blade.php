@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('contenu')
+<x-app-layout>
     @if(session()->has('info'))
         <div class="bg-info">
             {{ session('info')}}
@@ -62,4 +60,4 @@
         </div>
         <button class="btn btn-primary" type="submit">mettre à jour</button>
     </form>
-@endsection
+</x-app-layout>

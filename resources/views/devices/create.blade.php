@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('contenu')
+<x-app-layout>
     <form action="{{route('devices.store')}}" method="POST">
         @csrf
         <label for="">Affecter à</label>
@@ -55,4 +53,4 @@
         </div>
         <button class="btn btn-primary" type="submit">Créer</button>
     </form>
-@endsection
+</x-app-layout>

@@ -15,19 +15,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::resource('devices', DeviceController::class);
-
-Route::controller(DeviceController::class)->group(function(){
-    Route::get('/','index');
-    Route::delete('devices/force/{device}', 'forceDestroy')->name('devices.force.destroy');
-    Route::put('devices/restore/{device}','restore')->name('devices.restore');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::resource('cards', CardController::class);
-Route::controller(CardController::class)->group(function(){
-    Route::delete('cards/force/{card}', 'forceDestroy')->name('cards.force.destroy');
-    Route::put('cards/restore/{card}', 'restore')->name('cards.restore');
-    Route::get('user/{pseudo}/card', 'index')->name('cards.user');
+Route::middleware('auth')->group(function (){
+    Route::resource('devices', DeviceController::class);
+
+    Route::controller(DeviceController::class)->group(function(){
+        Route::delete('devices/force/{device}', 'forceDestroy')->name('devices.force.destroy');
+        Route::put('devices/restore/{device}','restore')->name('devices.restore');
+    });
+
+    Route::resource('cards', CardController::class);
+    Route::controller(CardController::class)->group(function(){
+        Route::delete('cards/force/{card}', 'forceDestroy')->name('cards.force.destroy');
+        Route::put('cards/restore/{card}', 'restore')->name('cards.restore');
+    });
+});
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    
 });

@@ -11,7 +11,7 @@ class CardUser extends Component
 
     public Card $card;
 
-    protected $rule = [
+    protected $rules = [
         'card.user_id' => 'required|int'
     ];
 

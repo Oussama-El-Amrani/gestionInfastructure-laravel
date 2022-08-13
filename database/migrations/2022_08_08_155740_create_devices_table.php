@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('date_taken');
             $table->date('date_delivery');
             $table->text('comment');
-            // $table->string('user_full_name');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')

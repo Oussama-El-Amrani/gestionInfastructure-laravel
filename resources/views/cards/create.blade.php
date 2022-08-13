@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('contenu')
+<x-app-layout>
     <form action="{{ route('cards.store') }}" method="POST">
         @csrf
         <label for="">Affecter à</label>
@@ -55,4 +53,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Créer La carte</button>
     </form>
-@endsection
+</x-app-layout>

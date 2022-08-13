@@ -29,7 +29,7 @@ class CardsTable extends Component
     }
 
     public function updating($name)
-    {
+        {
         if ($name === 'search') {
             $this->resetPage();
         }

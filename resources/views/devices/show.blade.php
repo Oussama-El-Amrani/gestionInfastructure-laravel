@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('contenu')
+<x-app-layout>
     <div>{{ $device->name }}</div>
     <div>{{ $device->location }}</div>
     <div>{{ $user }}</div>
@@ -8,4 +6,4 @@
     <div>{{ $device->date_taken}}</div>
     <div>{{ $device->date_delivery }}</div>
     <div>{{ $device->comment }}</div>
-@endsection
+</x-app-layout>
