@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CardController;
-use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function (){
         Route::delete('cards/force/{card}', 'forceDestroy')->name('cards.force.destroy');
         Route::put('cards/restore/{card}', 'restore')->name('cards.restore');
     });
+
+    Route::resource('users', UserController::class);
 });
 
 

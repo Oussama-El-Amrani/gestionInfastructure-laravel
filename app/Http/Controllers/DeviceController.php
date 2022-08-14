@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Device;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeviceRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class DeviceController extends Controller
 {
@@ -16,6 +18,9 @@ class DeviceController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
         return view('devices.index');
     }
 
@@ -26,6 +31,9 @@ class DeviceController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
         $users = User::all();
         return view('devices.create', compact('users'));
     }
@@ -63,6 +71,9 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
         $users = User::all();
         return view('devices.edit', compact('device', 'users'));
     }
@@ -89,6 +100,9 @@ class DeviceController extends Controller
      */
     public function destroy(Device $device)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
         $device->delete();
 
         return back()->with('info', 'Cette device a bien été mis dans la corbeille');
@@ -96,6 +110,8 @@ class DeviceController extends Controller
 
     public function forceDestroy($id)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         Device::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
         return back()->with('info', 'Device a bien été supprimer définitivement de la base de données');
@@ -103,6 +119,9 @@ class DeviceController extends Controller
 
     public function restore($id)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
         Device::withTrashed()->whereId($id)->firstOrFail()->restore();
 
         return back()->with('info', 'Cette device a bien été restauré');

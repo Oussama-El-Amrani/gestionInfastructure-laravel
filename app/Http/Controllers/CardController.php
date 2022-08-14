@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CardRequest;
 use App\Models\Card;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\CardRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class CardController extends Controller
 {
@@ -16,6 +18,7 @@ class CardController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('cards.index');
     }
 
@@ -26,6 +29,8 @@ class CardController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $users = User::all();
         return view('cards.create', compact('users'));
     }
@@ -64,6 +69,8 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $users = User::all();
 
         return view('cards.edit', compact('card', 'users'));
@@ -91,6 +98,8 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $card->delete();
         
         return back()->with('info', 'Votre Card a bien été mis dans la corbeille');
@@ -98,6 +107,7 @@ class CardController extends Controller
 
     public function forceDestroy($id)
     {
+        
         Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
         return back()->with('info', 'Device a bien été supprimer');

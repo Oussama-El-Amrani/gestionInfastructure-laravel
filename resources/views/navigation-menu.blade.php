@@ -12,13 +12,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                        {{ __('Appareils') }}
-                    </x-jet-nav-link>
+                    @can('user_access')
+                        <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                            {{ __('Appareils') }}
+                        </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
-                        {{ __('Cartes') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
+                            {{ __('Cartes') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('admin_access')
+                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                            {{ __('Utilisateur') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -141,13 +149,21 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                {{ __('Appareils') }}
-            </x-jet-responsive-nav-link>
+            @can('user_access')
+                <x-jet-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                    {{ __('Appareils') }}
+                </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
-                {{ __('Cartes') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
+                    {{ __('Cartes') }}
+                </x-jet-responsive-nav-link>
+                @endcan
+
+                @can('admin_access')
+                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                    {{ __('Utilisateur') }}
+                </x-jet-responsive-nav-link>
+                @endcan
         </div>
 
         <!-- Responsive Settings Options -->

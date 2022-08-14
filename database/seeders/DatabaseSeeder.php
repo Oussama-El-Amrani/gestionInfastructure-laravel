@@ -17,11 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()
-            ->has(Device::factory()->count(4))
-            ->has(Card::factory()->count(4))
-            ->count(10)
-            ->create();
+        $this->call([
+            // PermissionTableSeeder::class,
+            // RolesTableSeeder::class,
+            PermissionRoleTableSeeder::class,
+            // UserTableSeeder::class,
+            // RoleUserTableSeeder::class,
+        ]);
+
+        // User::factory()
+        //     ->has(Device::factory()->count(4))
+        //     ->has(Card::factory()->count(4))
+        //     ->count(10)
+        //     ->create();
+
         // \App\Models\Device::factory(10)->create();
         // \App\Models\User::factory(10)->create();
 
