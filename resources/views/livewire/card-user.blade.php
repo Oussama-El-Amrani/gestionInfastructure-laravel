@@ -1,6 +1,6 @@
 <td colspan="5">
     <form action="" wire:submit='save'>
-        <div wire:loading="Changement-en-cours"></div>
+        <div wire:loading="Chargement-en-cours"></div>
         <div class="mb-3">
             <label for="user_id">Affecter à</label>
             <select name="user_id" id="user_id" wire:model.defer="card.user_id">

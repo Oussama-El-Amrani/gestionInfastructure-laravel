@@ -18,13 +18,13 @@ return new class extends Migration
                   ->references('id')
                   ->on('roles')
                   ->constrained()
-                  ->onDelete('cascade');
+                  ->onDelete('restrict');
                   
             $table->foreignId('user_id') 
                   ->references('id')
                   ->on('users')
                   ->constrained()
-                  ->onDelete('cascade');    
+                  ->onDelete('restrict');    
         });
     }
 

@@ -20,7 +20,6 @@ class DeviceController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-
         return view('devices.index');
     }
 

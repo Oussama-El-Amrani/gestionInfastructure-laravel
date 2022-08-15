@@ -19,6 +19,7 @@ class CardController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return view('cards.index');
     }
 
@@ -66,7 +67,7 @@ class CardController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+        */
     public function edit(Card $card)
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -107,7 +108,6 @@ class CardController extends Controller
 
     public function forceDestroy($id)
     {
-        
         Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
         return back()->with('info', 'Device a bien été supprimer');

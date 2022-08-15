@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,9 +21,7 @@ class UserController extends Controller
     {
         abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::with('roles')->get();
-
-        return view('users.index', compact('users'));
+        return view('users.index');
     }
 
     /**
@@ -45,42 +44,41 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $userRequest)
     {
 
-        $user = User::create($request->validated());
+        $user = User::create($userRequest->all());
 
-        $user->roles()->sync($request->input('roles', []));
+        $user->roles()->sync($userRequest->input('roles', []));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('info', 'le nouveau utilisateur abien été jouter');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-
         return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
         abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::pkuck('title', 'id');
+        $roles = Role::pluck('title', 'id');
 
         $user->load('roles');
-
+        
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -88,27 +86,43 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('info', 'Cette utilisateur à bien été mis à jour');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $user->delete();
 
-        return redirect()->route('users.index');
+        return back()->with('info', 'Catte Utlisateur à bien été supprimer');
+    }
+    
+    /**
+     * forceDestroy
+     *
+     * @param  mixed $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function restore($id)
+    {
+        User::withTrashed()->whereId($id)->firstOrFail()->restore($id);
+
+        return back()->with('info', 'Cette utilisateur a bien été restauré');
     }
 }
