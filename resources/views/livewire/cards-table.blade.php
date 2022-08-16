@@ -1,6 +1,8 @@
 <div>
     <input type="text" placeholder="Entrer nom d'une machine" wire:model.debounce.500ms="search">
-    <a href="{{ route('cards.create') }}">Ajouter une carte</a>
+    @can('admin_access')
+        <a href="{{ route('cards.create') }}">Ajouter une carte</a>
+    @endcan
     <table>
         <thead>
             <tr>
@@ -19,10 +21,10 @@
             @foreach($cards as $card)
                 <tr>
                     <td>{{ $card->id }}</td>
-                    <td class="btn" wire:click="startEditPin( {{ $card->id }} )">{{ $card->pin }}</td>
-                    <td class="btn" wire:click="startEditMachineName( {{ $card->id }} )">{{ $card->machine_name }}</td>
-                    <td class="btn" wire:click="startEditPassword( {{ $card->id }} )">{{ $card->password }}</td>
-                    <td class="btn" wire:click="startEditUser( {{ $card->id }} ) ">{{ $card->user->name }}</td>
+                    <td class=" " wire:click="startEditPin( {{ $card->id }} )">{{ $card->pin }}</td>
+                    <td class=" " wire:click="startEditMachineName( {{ $card->id }} )">{{ $card->machine_name }}</td>
+                    <td class=" " wire:click="startEditPassword( {{ $card->id }} )">{{ $card->password }}</td>
+                    <td class=" " wire:click="startEditUser( {{ $card->id }} ) ">{{ $card->user->name }}</td>
                     <td>{{ $card->user->state ? 'interne': 'Stagiaire' }}</td>
                     <td>
                         @if($card->deleted_at)
@@ -42,11 +44,13 @@
                         @endif  
                     </td>    
                     <td>
+                        @can('admin_access')
                         <form action="{{ route($card->deleted_at ? 'cards.force.destroy' : 'cards.destroy', $card->id)}}" method="POST" onsubmit="return confirm('Voulez vous vraiment supprimer cette carte')">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Supprimer</button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
                 @if($editUserId === $card->id)

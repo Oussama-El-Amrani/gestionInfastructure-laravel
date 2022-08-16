@@ -30,7 +30,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::all();
         return view('cards.create', compact('users'));
@@ -99,7 +99,7 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $card->delete();
         
@@ -108,6 +108,8 @@ class CardController extends Controller
 
     public function forceDestroy($id)
     {
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
         return back()->with('info', 'Device a bien été supprimer');
@@ -115,6 +117,8 @@ class CardController extends Controller
 
     public function restore($id)
     {
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
         Card::withTrashed()->whereId($id)->firstOrFail()->restore($id);
 
         return back()->with('info', 'Cette device a bien été restauré');

@@ -2,9 +2,12 @@
     @if(session()->has('success'))
         {{ session('success') }}
     @endif
+    
     <input type="text"  placeholder="Recherche un Device" wire:model.debounce.500ms="search">
     
-    <a href=" {{route('devices.create')}} ">Ajouter un Device</a>
+    @can('admin_access')
+        <a href=" {{route('devices.create')}} ">Ajouter un Device</a>
+    @endcan    
     <table>
         <thead>
             <tr>
@@ -19,13 +22,22 @@
         <tbody>
             @foreach($devices as $device)
                 <tr>
-                    <td class='btn' wire:click="startEditName({{ $device->id }})">
+                    @php
+                        if($device->user_id===Auth::user()->id){
+                            echo('hh');
+                        }
+                        
+                    @endphp
+                    @if($device->user_id===Auth::user()->id)
+                        <div>{{ Auth::user()->id }}</div>
+                    @endif 
+                    <td class=' ' wire:click="startEditName({{ $device->id }})">
                         {{ $device->name }}
                     </td>
-                    <td class="btn" wire:click="startEditUser( {{ $device->id }} )">
+                    <td class=" " wire:click="startEditUser( {{ $device->id }} )">
                         {{ $device->user->name }}
                     </td>
-                    <td class="btn" wire:click="startEditState( {{ $device->id }} )">
+                    <td class=" " wire:click="startEditState( {{ $device->id }} )">
                         {{ $device->state ? 'Ok': 'Not ok' }}
                     </td>
                     <td>
@@ -46,11 +58,13 @@
                         @endif  
                     </td>    
                     <td>
-                        <form action="{{ route($device->deleted_at ? 'devices.force.destroy' : 'devices.destroy', $device->id)}}" method="POST" onsubmit="return confirm('Voulez vous vraiment supprimer ce device')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Supprimer</button>
-                        </form>
+                        @can('admin_access')
+                            <form action="{{ route($device->deleted_at ? 'devices.force.destroy' : 'devices.destroy', $device->id)}}" method="POST" onsubmit="return confirm('Voulez vous vraiment supprimer ce device')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Supprimer</button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
                 @if($editStateId === $device->id)
