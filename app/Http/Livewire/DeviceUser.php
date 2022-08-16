@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use App\Models\Device;
 use Livewire\Component;
 
-class DeviceState extends Component
+class DeviceUser extends Component
 {
-
     public Device $device;
 
-    protected $rules = [
-        'device.state' => 'required|boolean'
+    protected $rules =  [
+        'device.user_id' => 'required|int'
     ];
 
     public function save()
@@ -20,9 +20,10 @@ class DeviceState extends Component
         $this->device->save();
         $this->emit('deviceUpdated');
     }
-
+    
     public function render()
     {
-        return view('livewire.device-state');
+        $users = User::all();
+        return view('livewire.device-user', compact('users'));
     }
 }

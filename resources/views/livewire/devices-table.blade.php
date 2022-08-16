@@ -19,9 +19,15 @@
         <tbody>
             @foreach($devices as $device)
                 <tr>
-                    <td>{{ $device->name }}</td>
-                    <td>{{ $device->user->name }}</td>
-                    <td class="btn" wire:click="startEdit( {{ $device->id }} )">{{ $device->state ? 'Ok': 'Not ok' }}</td>
+                    <td class='btn' wire:click="startEditName({{ $device->id }})">
+                        {{ $device->name }}
+                    </td>
+                    <td class="btn" wire:click="startEditUser( {{ $device->id }} )">
+                        {{ $device->user->name }}
+                    </td>
+                    <td class="btn" wire:click="startEditState( {{ $device->id }} )">
+                        {{ $device->state ? 'Ok': 'Not ok' }}
+                    </td>
                     <td>
                         @if($device->deleted_at)
                             <form action="{{ route('devices.restore', $device->id) }}" method="POST">
@@ -47,11 +53,21 @@
                         </form>
                     </td>
                 </tr>
-                @if($editId === $device->id)
+                @if($editStateId === $device->id)
                     <tr>
                         <livewire:device-state :device="$device" :key="$device->id" />
                     </tr>
-                @endif    
+                @endif
+                @if($editNameId === $device->id)    
+                    <tr>
+                        <livewire:device-name :device="$device" :key="$device->id" />
+                    </tr>
+                @endif
+                @if($editUserId === $device->id)    
+                    <tr>
+                        <livewire:device-user :device="$device" :key="$device->id" />
+                    </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

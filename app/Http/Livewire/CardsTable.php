@@ -11,21 +11,39 @@ class CardsTable extends Component
     use WithPagination;
 
     public string $search = '';
-    public int $editId = 0;
+    public int $editUserId = 0;
+    public int $editPinId = 0;
+    public int $editPasswordId = 0;
+    public int $editMachineNameId = 0;
     protected $listeners = [
         'userUpdated' => 'onUserUpdated'
     ];
 
-    public function startEdit(int $id)
+    public function startEditUser(int $id)
     {
-        $this->editId = $id;
+        $this->editUserId = $id;
+    }
+
+    public function startEditPin(int $id)
+    {
+        $this->editPinId = $id;
+    }
+
+    public function startEditPassword(int $id)
+    {
+        $this->editPasswordId = $id;
+    }
+
+    public function startEditMachineName(int $id)
+    {
+        $this->editMachineNameId = $id;
     }
 
     public function onUserUpdated()
     {
         session()->flash('success',"Votre changement à bien été mis à jour");
 
-        $this->reset('editId');
+        $this->reset();
     }
 
     public function updating($name)

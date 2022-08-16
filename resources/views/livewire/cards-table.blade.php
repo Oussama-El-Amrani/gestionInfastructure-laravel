@@ -19,10 +19,10 @@
             @foreach($cards as $card)
                 <tr>
                     <td>{{ $card->id }}</td>
-                    <td>{{ $card->pin }}</td>
-                    <td>{{ $card->machine_name }}</td>
-                    <td>{{ $card->password }}</td>
-                    <td class="btn" wire:click="startEdit( {{ $card->id }} ) ">{{ $card->user->name }}</td>
+                    <td class="btn" wire:click="startEditPin( {{ $card->id }} )">{{ $card->pin }}</td>
+                    <td class="btn" wire:click="startEditMachineName( {{ $card->id }} )">{{ $card->machine_name }}</td>
+                    <td class="btn" wire:click="startEditPassword( {{ $card->id }} )">{{ $card->password }}</td>
+                    <td class="btn" wire:click="startEditUser( {{ $card->id }} ) ">{{ $card->user->name }}</td>
                     <td>{{ $card->user->state ? 'interne': 'Stagiaire' }}</td>
                     <td>
                         @if($card->deleted_at)
@@ -49,12 +49,27 @@
                         </form>
                     </td>
                 </tr>
-                @if($editId === $card->id)
+                @if($editUserId === $card->id)
                     <tr>
                         <livewire:card-user :card="$card"
                         :key="$card->id" />
                     </tr>
                 @endif
+                @if($editPinId === $card->id)
+                    <tr>
+                        <livewire:card-pin :card="$card" :key="$card->id"/>
+                    </tr>
+                @endif
+                @if($editPasswordId === $card->id)
+                    <tr>
+                        <livewire:card-password :card="$card" :key="$card->id" />
+                    </tr>
+                @endif
+                @if($editMachineNameId === $card->id)
+                    <tr>
+                        <livewire:card-machine-name :card="$card" :key="$card->id" />
+                    </tr>
+                @endif    
             @endforeach
         </tbody>
     </table>

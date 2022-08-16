@@ -16,14 +16,12 @@ use App\Http\Controllers\DeviceController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('auth')->group(function (){
     Route::resource('devices', DeviceController::class);
 
     Route::controller(DeviceController::class)->group(function(){
+        Route::get('/', 'index');
         Route::delete('devices/force/{device}', 'forceDestroy')->name('devices.force.destroy');
         Route::put('devices/restore/{device}','restore')->name('devices.restore');
     });

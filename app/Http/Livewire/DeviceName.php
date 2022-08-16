@@ -5,13 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\Device;
 use Livewire\Component;
 
-class DeviceState extends Component
+class DeviceName extends Component
 {
-
     public Device $device;
-
     protected $rules = [
-        'device.state' => 'required|boolean'
+        'device.name' => 'Required|string|max:100'
     ];
 
     public function save()
@@ -23,6 +21,6 @@ class DeviceState extends Component
 
     public function render()
     {
-        return view('livewire.device-state');
+        return view('livewire.device-name');
     }
 }
