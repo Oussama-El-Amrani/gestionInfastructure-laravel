@@ -25,18 +25,33 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
         ]);
 
-        // User::factory()
-        //     ->has(Device::factory()->count(4))
-        //     ->has(Card::factory()->count(4))
-        //     ->count(10)
-        //     ->create();
+        User::factory()
+            ->has(Device::factory()->count(4))
+            ->has(Card::factory()->count(4))
+            ->count(10)
+            ->create();
 
-        // \App\Models\Device::factory(10)->create();
-        // \App\Models\User::factory(10)->create();
+        /*
+            User::factory()
+                ->count(10)
+                ->has(
+                    Device::factory()
+                    ->count(4)
+                )
+                ->has(
+                    Card::factory()
+                    ->count(4)
+                )
+                ->hasAttached(
+                    Role::factory()->count(5),
+                    RoleUser::factory
+                    ->hasAttached(
+                        permission::factory()->count(2),
+                        PermissionRole::factory()
+                    )
+                )
+                ->create();
+        */
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

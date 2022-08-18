@@ -41,7 +41,7 @@ class CardsTable extends Component
 
     public function onUserUpdated()
     {
-        session()->flash('success',"Votre changement à bien été mis à jour");
+        session()->flash('info',"Votre changement à bien été mis à jour");
 
         $this->reset();
     }

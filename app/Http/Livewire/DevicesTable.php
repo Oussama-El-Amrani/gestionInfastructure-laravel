@@ -35,7 +35,7 @@ class DevicesTable extends Component
 
     public function onDeviceUpdated()
     {
-        session()->flash('success',"L'etat de votre appareil à bien été mis à jour");
+        session()->flash('info',"L'etat de votre appareil à bien été mis à jour");
 
         $this->reset();
     }
