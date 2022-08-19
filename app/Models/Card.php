@@ -18,7 +18,8 @@ class Card extends Model
         'machine_name',
         'password',
         'last_access_date',
-        'update_date'
+        'update_date',
+        'user_id'
     ];
 
     public function user(): BelongsTo

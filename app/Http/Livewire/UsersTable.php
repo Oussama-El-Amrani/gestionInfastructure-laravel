@@ -11,27 +11,11 @@ class UsersTable extends Component
     use WithPagination;
 
     public string $search = '';
-    public int $editId = 0;
-    protected $listeners = [
-        'roleUpdated' => 'onRoleUpdated'
-    ];
-    public function startEdit(int $id)
-    {
-        $this->editId = $id;
-    }
-
-    public function onRoleUpdated()
-    {
-        session()->flash('success', "Votre changement a bien été mis à jour");
-
-        $this->reset('editId');
-    }
 
     public function updating(string $name)
     {
         if ($name === 'search') {
             $this->resetPage();
-
         }
     }
 

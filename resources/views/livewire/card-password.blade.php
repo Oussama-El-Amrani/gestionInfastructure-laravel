@@ -1,5 +1,5 @@
 <td colspan="6">
-    <form action="" wire:submit="save">
+    <form action="" wire:submit.prevent="save">
         <div wire:loading="Chargement-en-cours"></div>
         <div class="mb-3">
             <label>Password</label>
@@ -8,6 +8,6 @@
         @error('password')
                 <p class="bg-danger">{{ $message }}</p>
         @enderror
-        <button class="btn btn-primary" type='submit' wire:loading.attr='disabled'>Sauvegarder</button>
+        <button class="btn btn-primary text-primary" type='submit' wire:loading.attr='disabled'>Sauvegarder</button>
     </form>
 </td>

@@ -103,7 +103,7 @@ class CardController extends Controller
 
         $card->delete();
         
-        return back()->with('info', 'Votre Card a bien été mis dans la corbeille');
+        return back()->with('delete', 'Votre Card a bien été mis dans la corbeille');
     }
 
     public function forceDestroy($id)
@@ -112,7 +112,7 @@ class CardController extends Controller
 
         Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
-        return back()->with('info', 'Device a bien été supprimer');
+        return back()->with('delete', 'Device a bien été supprimer');
     }
 
     public function restore($id)
@@ -121,6 +121,6 @@ class CardController extends Controller
         
         Card::withTrashed()->whereId($id)->firstOrFail()->restore($id);
 
-        return back()->with('info', 'Cette device a bien été restauré');
+        return back()->with('success', 'Cette device a bien été restauré');
     }
 }

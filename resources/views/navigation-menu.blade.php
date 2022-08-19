@@ -13,17 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @can('user_access')
-                        <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                        <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.*')">
                             {{ __('Appareils') }}
                         </x-jet-nav-link>
 
-                        <x-jet-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
+                        <x-jet-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.*')">
                             {{ __('Cartes') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('admin_access')
-                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                             {{ __('Utilisateur') }}
                         </x-jet-nav-link>
                     @endcan
@@ -150,17 +150,17 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @can('user_access')
-                <x-jet-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                <x-jet-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.*')">
                     {{ __('Appareils') }}
                 </x-jet-responsive-nav-link>
 
-                <x-jet-responsive-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
+                <x-jet-responsive-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.*')">
                     {{ __('Cartes') }}
                 </x-jet-responsive-nav-link>
                 @endcan
 
                 @can('admin_access')
-                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     {{ __('Utilisateur') }}
                 </x-jet-responsive-nav-link>
                 @endcan

@@ -16,7 +16,8 @@ class DeviceName extends Component
     {
         $this->validate();
         $this->device->save();
-        $this->emit('deviceUpdated');
+        
+        $this->emit('deviceNameUpdated');
     }
 
     public function render()

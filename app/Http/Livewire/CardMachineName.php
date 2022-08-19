@@ -16,7 +16,7 @@ class CardMachineName extends Component
     {
         $this->validate();
         $this->card->save();
-        $this->emit('cardUpdated');
+        $this->emit('cardMachineNameUpdated');
     }
 
     public function render()

@@ -14,10 +14,31 @@ class DevicesTable extends Component
     public int $editStateId = 0;
     public int $editNameId = 0;
     public int $editUserId = 0;
-    protected $listeners =  [
-        'deviceUpdated' => 'onDeviceUpdated'
+
+    protected $listeners = [
+        'deviceNameUpdated' => 'onDeviceNameUpdated',
+        'deviceStateUpdated' => 'onDeviceStateUpdated',
+        'deviceUserUpdated' => 'onDeviceUserUpdated'
     ];
 
+    public function onDeviceNameUpdated()
+    {
+        session()->flash('info',"Le nom de vitre appareil est bien été mis à jour");
+        $this->reset('editNameId');
+    }
+
+    public function onDeviceStateUpdated()
+    {
+        session()->flash('info',"L'etat de votre appareil a bien été mis à jour");
+        $this->reset('editStateId');
+    }
+
+    public function onDeviceUserUpdated()
+    {
+        session()->flash('info',"L'utilisateur de cette carte à bien été modifier'");
+        $this->reset('editUserId');
+    }
+    
     public function startEditState(int $id)
     {
         $this->editStateId = $id;
@@ -33,12 +54,6 @@ class DevicesTable extends Component
         $this->editUserId = $id;
     }
 
-    public function onDeviceUpdated()
-    {
-        session()->flash('info',"L'etat de votre appareil à bien été mis à jour");
-
-        $this->reset();
-    }
 
     public function updating($name, $value)
     {

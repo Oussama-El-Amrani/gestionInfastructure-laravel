@@ -19,7 +19,6 @@ class Device extends Model
         'date_delivery',
         'comment',
         'user_id'
-        // 'user_full_name'
     ];
 
     public function user(): BelongsTo

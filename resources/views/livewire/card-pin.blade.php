@@ -1,5 +1,5 @@
 <td colspan="6">
-    <form action="" wire:submit="save">
+    <form action="" wire:submit.prevent="save">
         <div wire:loading="Chargement-en-cours"></div>
         <div class="mb-3">
             <label>Pin</label>

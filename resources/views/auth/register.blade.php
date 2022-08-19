@@ -22,8 +22,8 @@
             <div class="mt-4">
                 <x-jet-label for="state" value=" {{ __('Register as:') }} "/>
                 <select name="state" id="state" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="0">Stagiaire</option>
-                    <option value="1">Interne</option>
+                    <option value="0">Front</option>
+                    <option value="1">Back</option>
                 </select>
             </div>
 

@@ -1,17 +1,43 @@
 <div class="container-fluid my-3">
+    <x-slot name="header">
+      <h2 class="font-semibold text-l text-gray-800 leading-tight">
+            Liste des appareils
+      </h2>
+    </x-slot>
+
     @if(session()->has('info'))
-        <div class="toast position-absolute end-0 bg-danger" data-bs-autohide="false" style="z-index: 10000;">
+        <div class="toast position-absolute end-0 bg-info show" data-bs-autohide="false" style="z-index: 10000;">
             <div class="toast-body text-white justify-c">
                 <span>{{ session('info') }}</span> 
                 <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
             </div>
         </div>
     @endif
+
+    
+    @if(session()->has('delete'))
+        <div class="toast position-absolute end-0 bg-danger show " data-bs-autohide="false" style="z-index: 10000;">
+            <div class="toast-body text-white justify-c">
+                <span>{{ session('delete') }}</span> 
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    @endif
+
+    @if(session()->has('restore'))
+        <div class="toast position-absolute end-0 bg-success show " data-bs-autohide="false" style="z-index: 10000;">
+            <div class="toast-body text-white justify-c">
+                <span>{{ session('restore') }}</span> 
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    @endif
+
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <!-- <h6 class="mb-0">Appareil de test</h6> -->
-                <input type="text"  placeholder="Recherche un Device" wire:model.debounce.500ms="search">                
+                <input type="text"  placeholder="Recherche un Appareil" wire:model.debounce.500ms="search">                
                 @can('admin_access')
                     <a class="btn btn-info text-white" href=" {{route('devices.create')}} ">Ajouter un Appareil</a>
                 @endcan 
@@ -25,7 +51,9 @@
                             <th>Etat</th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            @can('user_access')
+                                <th></th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>

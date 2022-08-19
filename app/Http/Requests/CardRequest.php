@@ -25,11 +25,11 @@ class CardRequest extends FormRequest
     {
         return [
             'pin' => 'required|string|max:100',
-            'date_certificate_expiration' => 'required',
+            'certificate_expiration_date' => 'required',
             'machine_name' => 'required|string|max:50',
             'password' => 'required|string|max:100',
             'last_access_date' => 'required',
-            'update_date' => 'required'
+            'update_date' => 'required',
         ];
     }
 }

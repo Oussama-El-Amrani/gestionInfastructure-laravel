@@ -104,7 +104,7 @@ class DeviceController extends Controller
 
         $device->delete();
 
-        return back()->with('info', 'Cette device a bien été mis dans la corbeille');
+        return back()->with('delete', 'Cette device a bien été mis dans la corbeille');
     }
 
     public function forceDestroy($id)
@@ -113,7 +113,7 @@ class DeviceController extends Controller
 
         Device::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
-        return back()->with('info', 'Device a bien été supprimer définitivement de la base de données');
+        return back()->with('delete', 'Device a bien été supprimer définitivement de la base de données');
     }
 
     public function restore($id)
@@ -123,6 +123,6 @@ class DeviceController extends Controller
 
         Device::withTrashed()->whereId($id)->firstOrFail()->restore();
 
-        return back()->with('info', 'Cette device a bien été restauré');
+        return back()->with('restore', 'Cette device a bien été restauré');
     }
 }

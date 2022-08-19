@@ -16,7 +16,7 @@ class CardPin extends Component
     {
         $this->validate();
         $this->card->save();
-        $this->emit('cardUpdated');
+        $this->emit('cardPinUpdated');
     }
 
     public function render()

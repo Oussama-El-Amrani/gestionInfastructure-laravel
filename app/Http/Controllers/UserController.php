@@ -109,7 +109,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return back()->with('info', 'Catte Utlisateur à bien été supprimer');
+        return back()->with('delete', 'Catte Utlisateur à bien été supprimer');
     }
     
     /**
@@ -123,6 +123,6 @@ class UserController extends Controller
     {
         User::withTrashed()->whereId($id)->firstOrFail()->restore($id);
 
-        return back()->with('info', 'Cette utilisateur a bien été restauré');
+        return back()->with('restore', 'Cette utilisateur a bien été restauré');
     }
 }

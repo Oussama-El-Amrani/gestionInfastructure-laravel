@@ -1,5 +1,11 @@
 <x-app-layout>
-    <div class="container">
+  <x-slot name="header">
+    <h2 class="font-semibold text-l text-gray-800 leading-tight">
+        Modification de la carte
+    </h2>
+  </x-slot>
+
+  <div class="container">
     <div class="row my-5">
       <div class="col-lg-10 mx-auto">
         <div class="card shadow">

@@ -11,6 +11,6 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-info" type="submit" wire:loading.attr='disabled'>Sauvegarder</button>
+        <button class="btn btn-info text-primary" type="submit" wire:loading.attr='disabled'>Sauvegarder</button>
     </form>
 </td>

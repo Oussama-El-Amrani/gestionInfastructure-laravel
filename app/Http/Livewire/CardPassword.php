@@ -16,7 +16,7 @@ class CardPassword extends Component
     {
         $this->validate();
         $this->card->save();
-        $this->emit('cardUpdated');
+        $this->emit('cardPasswordUpdated');
     }
 
     public function render()
