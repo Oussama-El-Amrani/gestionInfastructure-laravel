@@ -1,4 +1,3 @@
-Gestion d'infrastructure
 ![Gestion_d'infrastructure](https://user-images.githubusercontent.com/96589855/185784588-a108929a-9eb9-47c4-99e7-70f81d3abc81.png)
 
 Requirements
