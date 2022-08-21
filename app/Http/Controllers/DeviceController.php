@@ -32,8 +32,8 @@ class DeviceController extends Controller
     {
         abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-
         $users = User::all();
+
         return view('devices.create', compact('users'));
     }
 
@@ -59,6 +59,7 @@ class DeviceController extends Controller
     public function show(Device $device)
     {
         $user = $device->user->name;
+
         return view('Devices.show', compact('device', 'user'));
     }
 
@@ -88,7 +89,7 @@ class DeviceController extends Controller
     {
         $device->update($deviceRequest->all());
 
-        return redirect()->route('devices.index')->with('info','Votre device a bien été mis à jour');
+        return redirect()->route('devices.index')->with('info','Votre Appareil a bien été mis à jour');
     }
 
     /**
@@ -104,7 +105,7 @@ class DeviceController extends Controller
 
         $device->delete();
 
-        return back()->with('delete', 'Cette device a bien été mis dans la corbeille');
+        return back()->with('delete', 'Cette Appareil a bien été mis dans la corbeille');
     }
 
     public function forceDestroy($id)
@@ -113,7 +114,7 @@ class DeviceController extends Controller
 
         Device::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
-        return back()->with('delete', 'Device a bien été supprimer définitivement de la base de données');
+        return back()->with('delete', 'Appareil a bien été supprimer définitivement de la base de données');
     }
 
     public function restore($id)
@@ -123,6 +124,6 @@ class DeviceController extends Controller
 
         Device::withTrashed()->whereId($id)->firstOrFail()->restore();
 
-        return back()->with('restore', 'Cette device a bien été restauré');
+        return back()->with('restore', 'Cette Appareil a bien été restauré');
     }
 }

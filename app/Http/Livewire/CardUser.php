@@ -19,7 +19,7 @@ class CardUser extends Component
     {
         $this->validate();
         $this->card->save();
-        $this->emit('userUpdated');
+        $this->emit('cardUserUpdated');
     }
 
     public function render()

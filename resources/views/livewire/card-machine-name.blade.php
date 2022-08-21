@@ -1,4 +1,4 @@
-    <td colspan="6">
+    <td colspan="9">
     <form action="" wire:submit.prevent="save">
         <div wire:loading="Chargement-en-cours"></div>
         <div class="mb-3">
@@ -11,4 +11,3 @@
         <button class="btn btn-primary text-primary" type='submit' wire:loading.attr='disabled'>Sauvegarder</button>
     </form>
 </td>
-

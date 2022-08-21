@@ -1,36 +1,11 @@
 <div>
     <x-slot name="header">
-      <h2 class="font-semibold text-l text-gray-800 leading-tight">
+        <h2 class="font-semibold text-l text-gray-800 leading-tight">
             Liste des utilisateurs
-      </h2>
-  </x-slot>
+        </h2>
+    </x-slot>
 
-    @if(session()->has('info'))
-        <div class="toast position-absolute end-0 bg-info show " data-bs-autohide="false" style="z-index: 10000;">
-            <div class="toast-body text-white justify-c">
-                <span>{{ session('info') }}</span> 
-                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    @endif
-
-    @if(session()->has('delete'))
-        <div class="toast position-absolute end-0 bg-danger show " data-bs-autohide="false" style="z-index: 10000;">
-            <div class="toast-body text-white justify-c">
-                <span>{{ session('delete') }}</span> 
-                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    @endif
-
-    @if(session()->has('restore'))
-        <div class="toast position-absolute end-0 bg-success show " data-bs-autohide="false" style="z-index: 10000;">
-            <div class="toast-body text-white justify-c">
-                <span>{{ session('restore') }}</span> 
-                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    @endif
+    <x-notification-flash />
 
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">

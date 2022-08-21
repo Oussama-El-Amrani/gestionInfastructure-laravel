@@ -31,6 +31,7 @@ class CardsTable extends Component
     public function onCardUserUpdated()
     {
         session()->flash('info',"L'utilisateur de votre carte est bien été mis à jour");
+
         $this->reset('editUserId');
     }
 
@@ -42,6 +43,7 @@ class CardsTable extends Component
     public function onCardPinUpdated()
     {
         session()->flash('info',"Pin de votre carte est bien été mis à jour");
+        
         $this->reset('editPinId');
     }
 
@@ -53,6 +55,7 @@ class CardsTable extends Component
     public function onCardPasswordUpdated()
     {
         session()->flash('info',"Le mot de passe de votre carte est bien été mis à jour");
+
         $this->reset('editPasswordId');
     }
 
@@ -65,6 +68,7 @@ class CardsTable extends Component
     public function onCardMachineNameUpdated()
     {
         session()->flash('info',"La machine de votre carte a bien été mis à jour de votre carte est bien été mis à jour");
+
         $this->reset('editMachineNameId');
     }
 

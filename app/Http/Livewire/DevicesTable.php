@@ -24,18 +24,21 @@ class DevicesTable extends Component
     public function onDeviceNameUpdated()
     {
         session()->flash('info',"Le nom de vitre appareil est bien été mis à jour");
+        
         $this->reset('editNameId');
     }
 
     public function onDeviceStateUpdated()
     {
         session()->flash('info',"L'etat de votre appareil a bien été mis à jour");
+        
         $this->reset('editStateId');
     }
 
     public function onDeviceUserUpdated()
     {
         session()->flash('info',"L'utilisateur de cette carte à bien été modifier'");
+        
         $this->reset('editUserId');
     }
     
@@ -65,6 +68,7 @@ class DevicesTable extends Component
     public function render()
     {
         $devices = Device::where('name', 'LIKE',"%{$this->search}%")->withTrashed()->paginate(5);
+        
         return view('livewire.devices-table', compact('devices'));
     }
 }

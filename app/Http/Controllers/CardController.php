@@ -33,6 +33,7 @@ class CardController extends Controller
         abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::all();
+        
         return view('cards.create', compact('users'));
     }
 
@@ -46,7 +47,7 @@ class CardController extends Controller
     {
         Card::create($cardRequest->all());
 
-        return redirect()->route('cards.index')->with('info', 'La nouvelle cartes a bien été ajouter');
+        return redirect()->route('cards.index')->with('info', 'La nouvelle carte a bien été ajouter');
     }
 
     /**
@@ -59,6 +60,7 @@ class CardController extends Controller
     {
         $user_name = $card->user->name;
         $user_profile = $card->user->state;
+
         return view('Cards.show', compact('card', 'user_name','user_profile'));
     }
 
@@ -88,7 +90,7 @@ class CardController extends Controller
     {
         $card->update($cardRequest->all());
 
-        return redirect()->route('cards.index')->with('info','Votre card a bien été mis à jour');
+        return redirect()->route('cards.index')->with('info','Votre carte a bien été mis à jour');
     }
 
     /**
@@ -103,7 +105,7 @@ class CardController extends Controller
 
         $card->delete();
         
-        return back()->with('delete', 'Votre Card a bien été mis dans la corbeille');
+        return back()->with('delete', 'Votre Carte a bien été mis dans la corbeille');
     }
 
     public function forceDestroy($id)
@@ -112,7 +114,7 @@ class CardController extends Controller
 
         Card::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
 
-        return back()->with('delete', 'Device a bien été supprimer');
+        return back()->with('delete', 'Cette carte a bien été supprimer');
     }
 
     public function restore($id)
@@ -121,6 +123,6 @@ class CardController extends Controller
         
         Card::withTrashed()->whereId($id)->firstOrFail()->restore($id);
 
-        return back()->with('success', 'Cette device a bien été restauré');
+        return back()->with('restore', 'Cette carte a bien été restauré');
     }
 }
