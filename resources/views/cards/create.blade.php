@@ -23,7 +23,7 @@
                       <label for="pin">Pin</label>
                       <div class="invalid-feedback">
                         @error('pin')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -31,10 +31,10 @@
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="date" name="certificate_expiration_date" id="certificate_expiration_date" class="form-control  @error('certificate_expiration_date') is-invalid @enderror" placeholder="Expiration certificat" value="{{ old('certificate_expiration_date') }}" required >
-                      <label          for="certificate_expiration_date">Expiration Certificat</label>
+                      <label   for="certificate_expiration_date">Expiration Certificat</label>
                       <div class="invalid-feedback">
                         @error('certificate_expiration_date')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -44,7 +44,7 @@
                       <input type="text" name="machine_name" id="machine_name" class="form-control  @error('machine_name') is-invalid @enderror" placeholder="Nom du machine" value="{{ old('machine_name') }}" required >
                       <label for="machine_name">Nom  du Machine</label>
                       @error('machine_name')
-                          <p class="bg-danger">{{ $message }}</p>
+                          <p>{{ $message }}</p>
                       @enderror
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                       <label for="password">Mot de passe</label>
                       <div class="invalid-feedback">
                         @error('password')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -65,7 +65,7 @@
                       <label for="last_access_date">date dernier accès</label>
                       <div class="invalid-feedback">
                          @error('last_access_date')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -82,7 +82,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('user_id')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>
@@ -94,7 +94,7 @@
                         <label for="update_date">Date de MAJ</label>
                         <div class="invalid-feedback">
                             @error('update_date')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                         </div>
                       </div>

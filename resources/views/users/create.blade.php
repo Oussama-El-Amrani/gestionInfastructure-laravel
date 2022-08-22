@@ -24,7 +24,7 @@
                       <label for="Nom & Prénom">Nom & Prénom</label>
                       <div class="invalid-feedback">
                         @error('name')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -36,7 +36,7 @@
                       <label for="email">Email</label>
                       <div class="invalid-feedback">
                         @error('email')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -48,7 +48,7 @@
                       <label for="password">Mot de passe</label>
                       <div class="invalid-feedback">
                         @error('password')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -65,7 +65,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('roles')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>
@@ -83,7 +83,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('state')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>

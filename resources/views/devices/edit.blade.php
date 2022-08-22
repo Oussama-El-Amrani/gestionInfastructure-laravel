@@ -23,8 +23,8 @@
                       <input type="text" name="name" id="name" class="form-control  @error('title') is-invalid @enderror" placeholder="Réf.Appareil" value="{{ old('name', $device->name) }}" required >
                       <label for="name">Réf.Appareil</label>
                       <div class="invalid-feedback">
-                         @error('title')
-                          <p class="bg-danger">{{ $message }}</p>
+                         @error('name')
+                          <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -35,7 +35,7 @@
                       <label for="location">localisation</label>
                       <div class="invalid-feedback">
                           @error('location')
-                          <p class="bg-danger">{{ $message }}</p>
+                          <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -46,7 +46,7 @@
                       <label for="name">Date de prise</label>
                       <div class="invalid-feedback">
                          @error('date_taken')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror 
                       </div>
                     </div>
@@ -57,7 +57,7 @@
                       <label for="name">Date de remise</label>
                       <div class="invalid-feedback">
                         @error('date_taken')
-                          <p class="bg-danger">{{ $message }}</p>
+                          <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -68,7 +68,7 @@
                       <label for="comment">commentaire</label>
                       <div class="invalid-feedback">
                         @error('comment')
-                          <p class="bg-danger">{{ $message }}</p>
+                          <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -85,7 +85,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('user_id')
-                              <p class="bg-danger">{{ $message }}</p>
+                              <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="invalid-feedback">
                            @error('state')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                           @enderror
                         </div>
                     </div>

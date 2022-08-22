@@ -24,7 +24,7 @@
                       <label for="Nom & Prénom">name</label>
                       <div class="invalid-feedback">
                         @error('name')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -36,7 +36,7 @@
                       <label for="email">Email</label>
                       <div class="invalid-feedback">
                         @error('email')
-                            <p class="bg-danger">{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         @enderror
                       </div>
                     </div>
@@ -44,7 +44,7 @@
 
                   <div class="col-md-6 col-lg-3 mb-3">
                       <div class="mb-3 form-floating">
-                          <select name="roles[]" id="roles" class="form-select">
+                          <select name="roles[]" id="roles" class="form-select @error('state') is-invalid @enderror">
                             @foreach($roles as $id => $role)
                                 <option value="{{ $id }}" {{ in_array($id, old('roles', $user->roles->pluck('id')->toArray())) ? 'selected' : '' }} >
                                     {{ $role }}
@@ -53,7 +53,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('roles')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>
@@ -71,7 +71,7 @@
                           </select>
                           <div class="invalid-feedback">
                             @error('state')
-                                <p class="bg-danger">{{ $message }}</p>
+                                <p>{{ $message }}</p>
                             @enderror
                           </div>
                       </div>

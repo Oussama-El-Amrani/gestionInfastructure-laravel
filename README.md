@@ -24,4 +24,4 @@ Setup Directions
 ## Featured :
 
 - Bootstrap 5 - TailwindCSS 
-- Laravel 9 - livewire - JetStream Inertia
+- Laravel 9 - livewire - JetStream livewire
