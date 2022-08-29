@@ -56,19 +56,19 @@
 
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
-                      <input type="date" name="date_delivery" id="date_delivery" class="form-control  @error('date_delivery') is-invalid @enderror" placeholder="Date de remise" value="{{old('date_delivery')}}" required >
-                      <label for="name">Date de remise</label>
+                      <input type="date" name="date_delivery" id="date_delivery" class="form-control  @error('date_delivery') is-invalid @enderror" placeholder="Date prévue de remise" value="{{old('date_delivery')}}" required >
+                      <label for="name">Date prévue de remise</label>
                       <div class="invalid-feedback">
-                         @error('date_delivery')
+                        @error('date_delivery')
                           <p>{{ $message }}</p>
-                            @enderror
+                        @enderror
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-3 mb-3">
+                  <div class="col-12 mb-3">
                     <div class="mb-3 form-floating">
-                      <textarea name="comment" id="comment" class="form-control  @error('comment') is-invalid @enderror" placeholder="@lang('Comment')" >{{old('comment')}}</textarea>
+                      <textarea name="comment" id="comment" class="form-control  @error('comment') is-invalid @enderror" placeholder="@lang('Comment')" style="height: 100px">{{old('comment')}}</textarea>
                       <label for="comment">commentaire</label>
                       <div class="invalid-feedback">
                          @error('comment')

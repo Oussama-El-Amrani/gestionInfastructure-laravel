@@ -37,15 +37,3 @@ Route::middleware('auth')->group(function (){
         Route::put('users/restore/{user}', 'restore')->name('users.restore');
     });
 });
-
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    
-});

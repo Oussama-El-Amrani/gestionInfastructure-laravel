@@ -10,7 +10,7 @@
       <div class="col-lg-10 mx-auto">
         <div class="card shadow">
           <div class="card-header">
-              <h4>Ajouter un Appareil</h4>
+              <h4>Modifier un Appareil</h4>
           </div>
           <div class="card-body p-4">
             <form action="{{route('devices.update',$device->id)}}" method="POST">
@@ -18,6 +18,7 @@
               @method('PUT')
               <div id="show-item">
                 <div class="row">
+
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="name" id="name" class="form-control  @error('title') is-invalid @enderror" placeholder="Réf.Appareil" value="{{ old('name', $device->name) }}" required >
@@ -29,6 +30,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="location" id="location" class="form-control  @error('location') is-invalid @enderror" placeholder="localisation" value="{{ old('location', $device->location) }}" required >
@@ -40,6 +42,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="date" name="date_taken" id="date_taken" class="form-control  @error('date_taken') is-invalid @enderror" placeholder="Date de prise" value="{{ old('date_taken', $device->date_taken) }}" required >
@@ -51,10 +54,11 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
-                      <input type="date" name="date_delivery" id="date_delivery" class="form-control  @error('date_delivery') is-invalid @enderror" placeholder="Date de remise" value="{{old('date_delivery', $device->date_delivery)}}" required >
-                      <label for="name">Date de remise</label>
+                      <input type="date" name="date_delivery" id="date_delivery" class="form-control  @error('date_delivery') is-invalid @enderror" placeholder="Date prévue de remise" value="{{old('date_delivery', $device->date_delivery)}}" required >
+                      <label for="name">Date prévue de remise</label>
                       <div class="invalid-feedback">
                         @error('date_taken')
                           <p>{{ $message }}</p>
@@ -62,9 +66,10 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-3 mb-3">
+
+                  <div class=" col-12 mb-3">
                     <div class="mb-3 form-floating">
-                      <textarea name="comment" id="comment" class="form-control  @error('comment') is-invalid @enderror" placeholder="@lang('Comment')" cols="30">{{old('comment', $device->comment)}}</textarea>
+                      <textarea name="comment" id="comment" class="form-control  @error('comment') is-invalid @enderror" placeholder="@lang('Comment')" style="height: 100px">{{old('comment', $device->comment)}}</textarea>
                       <label for="comment">commentaire</label>
                       <div class="invalid-feedback">
                         @error('comment')
@@ -73,6 +78,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-md-6 col-lg-3 mb-3">
                       <div class="mb-3 form-floating">
                           <select name="user_id" class="form-control">
@@ -90,6 +96,7 @@
                           </div>
                       </div>
                     </div>
+
                     <div class="col-md-6 col-lg-3 mb-3">
                         <label >State</label>
                         <div class="form-check">
@@ -106,6 +113,7 @@
                           @enderror
                         </div>
                     </div>
+
                 </div>
               </div>
               <div class="col-md-3 mb-3 d-grid">

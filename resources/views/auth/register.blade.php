@@ -20,7 +20,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="state" value=" {{ __('Register as:') }} "/>
+                <x-jet-label for="state" value=" {{ __('Profil') }} "/>
                 <select name="state" id="state" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="0">Front</option>
                     <option value="1">Back</option>

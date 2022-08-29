@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <td class="table-secondary">Expiration Certificat</td>
-                            <td>{{ $card->certificate_expiration_date }}</td>
+                            <td>{{ date('d/m/Y',strtotime($card->certificate_expiration_date)) }}</td>
                         </tr>
                         <tr>
                             <td class="table-secondary">Machine</td>
@@ -37,19 +37,25 @@
                         </tr>
                         <tr>
                             <td class="table-secondary">Dernier dernier Accès</td>
-                            <td>{{ $card->last_access_date }}</td>
+                            <td>{{ date('d/m/Y',strtotime($card->last_access_date)) }}</td>
                         </tr>
                         <tr>
                             <td class="table-secondary">Date de MAJ</td>
-                            <td>{{ $card->update_date }}</td>
+                            <td>{{ date('d/m/Y',strtotime($card->update_date)) }}</td>
                         </tr>
                         <tr>
                             <td class="table-secondary">Affectation</td>
-                            <td>{{ $user_name }}</td>
+                            <td>
+                                {{ $card->user ? $card->user->name : '' }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="table-secondary">Profil</td>
-                            <td>{{ $user_profile? 'interne' : 'Front' }}</td>
+                            <td>
+                                @if($card->user)
+                                    {{ $card->user->state ? 'Back': 'Front' }}
+                                @endif
+                            </td>
                         </tr>
                     </tbody>
                 </table>

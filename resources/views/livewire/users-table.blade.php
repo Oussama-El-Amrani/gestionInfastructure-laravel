@@ -10,7 +10,6 @@
     <div class="container-fluid py-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mb-4">
-                <!-- <h6 class="mb-0">list du Utilisateurs</h6> -->
                 <input type="text" class="rounded" placeholder="Entrez un nom d'utilisateur" wire:model.debounce.500ms="search">              
                 @can('admin_access')
                     <a class="btn btn-info text-white" href="{{ route('users.create') }}">Ajouter un utilisateur</a>
@@ -21,10 +20,10 @@
                     <thead class="table-info">
                         <tr>
                             <th>#ID</th>
-                            <th>Nom & Prenom</th>
+                            <th>Nom & Prénom</th>
                             <th>Email</th>
-                            <th>state</th>
-                            <th>Roles</th>
+                            <th>Profil</th>
+                            <th>rôle</th>
                             <th></th>
                         </tr>
                     </thead>

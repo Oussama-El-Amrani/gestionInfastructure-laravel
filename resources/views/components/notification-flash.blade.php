@@ -3,7 +3,9 @@
         <div class="toast position-absolute end-0 bg-info" data-bs-autohide="false" style="z-index: 10000;">
             <div class="toast-body d-flex text-white justify-content-between">
                 <span>{{ session('info') }}</span> 
-                <button type="button" class="btn-close text-white" data-bs-dismiss="toast" >X</button>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="toast" >
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
             </div>
         </div>
 
@@ -22,7 +24,9 @@
         <div class="toast position-absolute end-0 bg-danger" data-bs-autohide="false" style="z-index: 10000;">
             <div class="toast-body d-flex text-white justify-content-between">
                 <span>{{ session('delete') }}</span> 
-                <button type="button" class="btn-close" data-bs-dismiss="toast">X</button>
+                <button type="button" class="btn-close" data-bs-dismiss="toast">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
             </div>
         </div>
     @endif
@@ -31,7 +35,9 @@
         <div class="toast position-absolute end-0 bg-success" data-bs-autohide="false" style="z-index: 10000;">
             <div class="toast-body d-flex text-white justify-content-between">
                 <span>{{ session('restore') }}</span> 
-                <button type="button" class="btn-close" data-bs-dismiss="toast">X</button>
+                <button type="button" class="btn-close" data-bs-dismiss="toast">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
             </div>
         </div>
     @endif

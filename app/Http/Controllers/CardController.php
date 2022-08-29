@@ -18,8 +18,6 @@ class CardController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return view('cards.index');
     }
 
@@ -58,10 +56,7 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        $user_name = $card->user->name;
-        $user_profile = $card->user->state;
-
-        return view('Cards.show', compact('card', 'user_name','user_profile'));
+        return view('Cards.show', compact('card'));
     }
 
     /**
@@ -72,7 +67,7 @@ class CardController extends Controller
         */
     public function edit(Card $card)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::all();
 

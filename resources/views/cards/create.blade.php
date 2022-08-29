@@ -1,7 +1,7 @@
 <x-app-layout >
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Création d"une carte
+        Création d'une carte
     </h2>
   </x-slot>
   
@@ -10,13 +10,14 @@
       <div class="col-lg-10 mx-auto">
         <div class="card shadow">
           <div class="card-header">
-              <h4>Modifier un Appareil</h4>
+              <h4>Créer une carte</h4>
           </div>
           <div class="card-body p-4">
             <form action="{{route('cards.store')}}" method="POST">
               @csrf
               <div id="show-item">
                 <div class="row">
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="pin" id="pin" class="form-control  @error('pin') is-invalid @enderror" placeholder="Pin" value="{{ old('pin') }}" required >
@@ -28,6 +29,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="date" name="certificate_expiration_date" id="certificate_expiration_date" class="form-control  @error('certificate_expiration_date') is-invalid @enderror" placeholder="Expiration certificat" value="{{ old('certificate_expiration_date') }}" required >
@@ -39,6 +41,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="machine_name" id="machine_name" class="form-control  @error('machine_name') is-invalid @enderror" placeholder="Nom du machine" value="{{ old('machine_name') }}" required >
@@ -48,6 +51,7 @@
                       @enderror
                     </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="password" id="password" class="form-control  @error('password') is-invalid @enderror" placeholder="Mot de passe" value="{{ old('password') }}" required >
@@ -59,6 +63,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="date" name="last_access_date" id="last_access_date" class="form-control  @error('last_access_date') is-invalid @enderror" placeholder=" date dernier accès" value="{{ old('last_access_date') }}" required >
@@ -70,6 +75,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                       <div class="mb-3 form-floating">
                           <select name="user_id" class="form-select">
@@ -87,6 +93,7 @@
                           </div>
                       </div>
                   </div>
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3">
                       <div class="mb-3 form-floating">
@@ -100,6 +107,7 @@
                       </div>
                     </div>
                   </div>
+                  
                 </div>
               </div>
               <div class="col-md-3 mb-3 d-grid">

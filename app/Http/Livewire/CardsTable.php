@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Card;
+use DateTimeInterface;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,11 +11,14 @@ class CardsTable extends Component
 {
     use WithPagination;
 
+    public $id;
     public string $search = '';
     public int $editUserId = 0;
     public int $editPinId = 0;
     public int $editPasswordId = 0;
     public int $editMachineNameId = 0;
+    public string $orderDirection = 'ASC';
+    public string $orderField = "certificate_expiration_date";
 
     protected $listeners = [
         'cardUserUpdated' => 'onCardUserUpdated',
@@ -22,6 +26,12 @@ class CardsTable extends Component
         'cardPasswordUpdated' => 'onCardPasswordUpdated',
         'cardMachineNameUpdated' => 'onCardMachineNameUpdated',
     ];
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
 
     public function startEditUser(int $id)
     {
@@ -79,10 +89,32 @@ class CardsTable extends Component
         }
     }
 
+    public function setOrderField(string $order)
+    {
+        if ($order === $this->orderField) {
+            $this->orderDirection = $this->orderDirection === 'ASC' ? 'DESC' : 'ASC';
+        } else {
+            $this->orderField = $order;
+            $this->reset('orderDirection');
+            $this->orderDirection = 'ASC';
+        }
+    }
+
     public function render()
     {
-        $cards = Card::where('machine_name', 'LIKE',"%{$this->search}%")->withTrashed()->paginate(5);
-
+        if ($this->id) {
+            $cards = Card::where('user_id',"{$this->id}")
+                         ->where('machine_name', 'LIKE',"%{$this->search}%")
+                         ->orderBy($this->orderField, $this->orderDirection)
+                         ->paginate(5);
+        } 
+        if (!($this->id)) {
+            $cards = Card::where('machine_name', 'LIKE',"%{$this->search}%")
+                         ->withTrashed()
+                         ->orderBy($this->orderField, $this->orderDirection)
+                         ->paginate(5);
+        }
+        
         return view('livewire.cards-table', compact('cards'));
     }
 }

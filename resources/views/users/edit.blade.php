@@ -18,6 +18,7 @@
               @method('PUT')
               <div id="show-item">
                 <div class="row">
+                  
                   <div class="col-md-6 col-lg-3 mb-3">
                     <div class="mb-3 form-floating">
                       <input type="text" name="name" id="name" class="form-control  @error('name') is-invalid @enderror" placeholder="Nom & Prénom" value="{{ old('name',$user->name) }}" required >

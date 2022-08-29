@@ -18,8 +18,6 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return view('devices.index');
     }
 
@@ -58,9 +56,7 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
-        $user = $device->user->name;
-
-        return view('Devices.show', compact('device', 'user'));
+        return view('Devices.show', compact('device'));
     }
 
     /**
@@ -71,8 +67,7 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::all();
         return view('devices.edit', compact('device', 'users'));
@@ -120,7 +115,6 @@ class DeviceController extends Controller
     public function restore($id)
     {
         abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
 
         Device::withTrashed()->whereId($id)->firstOrFail()->restore();
 
